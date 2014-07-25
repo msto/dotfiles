@@ -46,7 +46,7 @@ filetype plugin indent on    " required
 
 syntax on
 set modeline 
-au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 set colorcolumn=80
 set backspace=indent,eol,start
@@ -54,5 +54,5 @@ set backspace=indent,eol,start
 let g:syntastic_python_checkers = ['flake8'] 
 
 let g:solarized_termtrans=1
-set background=dark
+set background=light
 colorscheme solarized
