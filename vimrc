@@ -28,6 +28,8 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,8 +53,13 @@ au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 set colorcolumn=80
 set backspace=indent,eol,start
 
+" Syntastic prefs
 let g:syntastic_python_checkers = ['flake8'] 
 
+" Solarized prefs
 let g:solarized_termtrans=1
 set background=light
 colorscheme solarized
+
+" NERDCommenter prefs
+let NERDSpaceDelims=1
