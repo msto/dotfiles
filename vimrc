@@ -32,7 +32,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-" Plugin 'bling/vim-airline'
+Plugin 'bling/vim-airline'
+" Plugin 'Lokaltog/powerline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,5 +70,6 @@ colorscheme solarized
 let NERDSpaceDelims=1
 
 " Airline prefs
-" let g:airline_enable_syntastic=1
-" let g:airline_theme='solarized'
+let g:airline_enable_syntastic=1
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=1
