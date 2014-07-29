@@ -30,6 +30,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,6 +54,7 @@ au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 set colorcolumn=80
 set backspace=indent,eol,start
+set number
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8'] 
