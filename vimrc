@@ -54,12 +54,19 @@ syntax on
 set modeline 
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
+" Soft tabs of width 4
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
 set colorcolumn=80
 set backspace=indent,eol,start
 set number
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8'] 
+let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
 
 " Solarized prefs
 let g:solarized_termtrans=1
