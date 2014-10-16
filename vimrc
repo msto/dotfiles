@@ -64,6 +64,8 @@ set expandtab
 set colorcolumn=80
 set backspace=indent,eol,start
 set number
+set relativenumber
+set cursorline
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8'] 
