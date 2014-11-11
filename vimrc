@@ -33,7 +33,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
-" Plugin 'Lokaltog/powerline'
 " Plugin 'itchyny/lightline.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
@@ -53,7 +52,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 syntax on
-set modeline 
+set modeline
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType tex,latex setlocal spell spelllang=en_us
 
@@ -76,7 +75,7 @@ endif
 set noshowmode
 
 " Syntastic prefs
-let g:syntastic_python_checkers = ['flake8'] 
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
 
 " Solarized prefs
@@ -92,14 +91,47 @@ set laststatus=2
 let g:airline_enable_syntastic=1
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+let g:airline_section_x=airline#section#create_right(['filetype'])
+let g:airline_section_y='%p%%'
+let g:airline_section_z='%l:%c'
 
 " Lightline
 " set laststatus=2
 " let g:lightline = {
     " \ 'colorscheme': 'solarized',
+    " \ 'active': {
+    " \   'left': [ [ 'mode', 'paste' ],
+                  " [ 'fugitive', 'filename' ] ],
+    " \   'right': [ [ 'syntastic', 'lineinfo' ],
+    " \              ['percent'],
+    " \              ['filetype'] ]
+    " \ },
+    " \ 'component_expand': {
+    " \   'syntastic': 'SyntasticStatuslineFlag',
+    " \ },
+    " \ 'component_type': {
+    " \   'syntastic': 'error',
+    " \ },
     " \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
     " \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
     " \ }
+
+" augroup AutoSyntastic
+  " autocmd!
+  " autocmd BufWritePost *.c,*.cpp call s:syntastic()
+" augroup END
+" function! s:syntastic()
+  " SyntasticCheck
+  " call lightline#update()
+" endfunction
+
+    " \ 'separator': { 'left': "", 'right': "" },
+    " \ 'subseparator': { 'left': "", 'right': "" }
+" Arrow separators (requires patched font)
+" \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+" \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 " Latex-Box prefs
 let g:LatexBox_latexmk_options = '-pvc'
