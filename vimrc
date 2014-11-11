@@ -69,7 +69,7 @@ set number
 set relativenumber
 set cursorline
 
-" airline colors
+" lightline colors
 if !has('gui_running')
     set t_Co=256
 endif
