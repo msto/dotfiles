@@ -32,8 +32,9 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
 " Plugin 'Lokaltog/powerline'
+Plugin 'itchyny/lightline.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " All of your Plugins must be added before the following line
@@ -54,6 +55,7 @@ filetype plugin indent on    " required
 syntax on
 set modeline 
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+au FileType tex,latex setlocal spell spelllang=en_us
 
 " Soft tabs of width 4
 set tabstop=4
@@ -66,6 +68,12 @@ set backspace=indent,eol,start
 set number
 set relativenumber
 set cursorline
+
+" airline colors
+if !has('gui_running')
+    set t_Co=256
+endif
+set noshowmode
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8'] 
@@ -80,6 +88,19 @@ colorscheme solarized
 let NERDSpaceDelims=1
 
 " Airline prefs
-let g:airline_enable_syntastic=1
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts=1
+" set laststatus=2
+" let g:airline_enable_syntastic=1
+" let g:airline_theme='solarized'
+" let g:airline_theme='powerlineish'
+" let g:airline_powerline_fonts=1
+
+" Lightline
+set laststatus=2
+let g:lightline = {
+    \ 'colorscheme': 'solarized',
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \ }
+
+" Latex-Box prefs
+let g:LatexBox_latexmk_options = '-pvc'
