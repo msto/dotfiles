@@ -54,7 +54,10 @@ filetype plugin indent on    " required
 syntax on
 set modeline
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
-au FileType tex,latex setlocal spell spelllang=en_us
+" Soft breaks
+au FileType tex,latex setlocal spell spelllang=en_us wrap linebreak nolist "textwidth=0 wrapmargin=0
+" Hard breaks
+" au FileType tex,latex setlocal spell spelllang=en_us textwidth=80
 
 " Soft tabs of width 4
 set tabstop=4
@@ -62,11 +65,25 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-set colorcolumn=80
+set colorcolumn=81
 set backspace=indent,eol,start
 set number
 set relativenumber
 set cursorline
+
+" Move by line on screen
+" :map j gj
+" :map k gk
+
+" Remap navigation commands to center view on cursor using zz
+nnoremap <C-U> 11kzz
+nnoremap <C-D> 11jzz
+nnoremap j jzz
+nnoremap k kzz
+nnoremap # #zz
+nnoremap * *zz
+nnoremap n nzz
+nnoremap N Nzz
 
 " lightline colors
 if !has('gui_running')
@@ -76,7 +93,9 @@ set noshowmode
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
+
 
 " Solarized prefs
 let g:solarized_termtrans=1
