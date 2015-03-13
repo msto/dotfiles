@@ -1,0 +1,68 @@
+# this makes nano print line numbers at all times
+alias nano="nano -c -w";
+
+# shortcut for ls
+alias l='ls -lh --group-directories-first'
+
+alias pytl='pytemplate.sh'
+
+alias tunnel='ssh my520@ssh.research.partners.org'
+
+alias prebwa='bsub -J pyPreBWA -o pyPreBWA.out -e pyPreBWA.err -q normal preBWA.py'
+alias pipeline='bsub -J pipeline -o pipeline.out -e pipeline.err -q normal pipeline.py'
+alias gatkpp='bsub -J preprocess_gatk -q normal -o gatk_preprocessing.out -e gatk_preprocessing.err gatk_preprocessing.py'
+
+# alias interact='bsub -Is -q interact /bin/bash'
+alias interact='bsub -Is -q interact -sla miket_sc /bin/bash'
+
+alias vless='vim -u /usr/share/vim/vim72/macros/less.vim'
+export LESS='-S'
+#
+alias matshell='matlab -nojvm -nodisplay -nosplash'
+
+# Virtual environment var
+# export WORKON_HOME=$HOME/.virtualenvs
+
+# make default text editor nano instead of VI
+export EDITOR=/usr/bin/nano
+
+export MACHTYPE=x86_64
+
+# PICARD_DIR=/data/talkowski/tools/bin/picard-current/picard-tools-1.74
+
+# export PICARD_DIR=/apps/source/picard-tools-1.75/picard-tools-1.75
+export PICARD_DIR=/data/talkowski/tools/bin/picard
+#export GATK_DIR=/apps/source/gatk-2.2-4/GenomeAnalysisTK-2.2-4-g4a174fb
+export GATK_DIR=/data/talkowski/tools/bin/gatk
+export GATK_BUNDLE=/data/HD/dataset/gatk-bundle-1.5-hg19
+#export QUEUE_DIR=/data/talkowski/tools/bin/Queue-2.3-9-ge5ebf34
+export QUEUE_DIR=/data/talkowski/tools/bin/queue
+
+export PPH=/data/talkowski/tools/bin/polyphen-2.2.2
+export EVS=/data/talkowski/tools/local/src/evsClient-v.0.0.9
+
+# PATH
+#PATH=$PATH:$HOME/code/scripts
+# PATH=$HOME/.local/bin:$PATH
+#PATH=$HOME/code:$PATH
+#PATH=$HOME/code/pybamstat:$PATH
+#PATH=$HOME/code/pycluster:$PATH
+# PATH=$PATH:/data/talkowski/tools/bin/scala/bin
+# PATH=$PATH:/data/talkowski/tools/bin/annovar
+# PATH=$PATH:/data/talkowski/tools/bin/vcftools_0.1.10/bin
+# PATH=$PATH:$PPH/bin
+# PATH=/data/talkowski/tools/bin/jdk1.6.0_21/bin:$PATH
+# PATH=/data/talkowski/tools/local/bin:$PATH
+# PATH=/data/talkowski/tools/bin:/data/talkowski/tools/code:$PATH
+# PATH=$PATH:$HOME/code/dna-scripts
+# export PATH
+
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/data/talkowski/tools/bin/libgtextutils-0.6/lib/pkgconfig
+
+export MANPATH=$MANPATH:/data/talkowski/tools/bin/scala/man/man1
+
+# MAD path
+mad=met37@bricklayer01.partners.org
+
+# DIPR
+# dipr=cc472@172.27.111.200
