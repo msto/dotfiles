@@ -86,15 +86,17 @@ nnoremap n nzz
 nnoremap N Nzz
 
 " lightline colors
-if !has('gui_running')
-    set t_Co=256
-endif
-set noshowmode
+" if !has('gui_running')
+    " set t_Co=256
+" endif
+" set noshowmode
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
 
 
 " Solarized prefs

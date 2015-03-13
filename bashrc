@@ -7,3 +7,13 @@ fi
 
 # Command prompt
 export PS1="[\u@\h \W]\$ "
+
+# PATH
+PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+export PATH
+
+# MANPATH
+MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
+export MANPATH
+
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
