@@ -1,0 +1,45 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# Only display updated login message
+cmp -s $HOME/.hushlogin /etc/motd
+if [ $? != 0 ]; then
+  tee $HOME/.hushlogin < /etc/motd
+fi
+
+# User specific environment and startup programs
+
+
+# Add github repositories to $PATH
+PATH=$PATH:$HOME/code/classifier
+PATH=$PATH:$HOME/code/bamstat
+PATH=$PATH:$HOME/code/dna-scripts
+PATH=$PATH:$HOME/code/dna-processing
+PATH=$PATH:$HOME/code/sv-callers
+PATH=$PATH:$HOME/code/talkowskidb
+PATH=$PATH:$HOME/code/pycluster
+PATH=$PATH:$HOME/code/readpaircluster
+
+PATH=$PATH:$HOME/bin
+PATH=$PATH:/data/talkowski/tools/bin
+PATH=$PATH:/data/talkowski/tools/code
+PATH=$PATH:/data/talkowski/tools/local/bin
+PATH=$PATH:/data/talkowski/tools/local/src/bedtools-master/bin
+
+export PATH
+
+# PYTHONPATH=$PYTHONPATH:$HOME/code
+# PYTHONPATH=$PYTHONPATH:/data/talkowski/tools/local/lib/python
+# PYTHONPATH=$PYTHONPATH:/data/talkowski/tools/local/lib/python3.2
+# export PYTHONPATH
+
+PERL5LIB=$PERL5LIB:/source/vcftools_0.1.9/vcftools_0.1.9/perl
+export PERL5LIB
+
+export DRMAA_LIBRARY_PATH=/data/talkowski/tools/local/lib/libdrmaa.so.1.0.3
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/libevent/2.0.21/lib

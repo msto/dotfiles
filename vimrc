@@ -30,8 +30,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
+" Plugin 'kien/ctrlp.vim'
+" Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
 " Plugin 'itchyny/lightline.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -71,19 +71,22 @@ set number
 set relativenumber
 set cursorline
 
+" Don't copy line numbers
+" set mouse+=a
+
 " Move by line on screen
 " :map j gj
 " :map k gk
 
 " Remap navigation commands to center view on cursor using zz
-nnoremap <C-U> 11kzz
-nnoremap <C-D> 11jzz
-nnoremap j jzz
-nnoremap k kzz
-nnoremap # #zz
-nnoremap * *zz
-nnoremap n nzz
-nnoremap N Nzz
+" nnoremap <C-U> 11kzz
+" nnoremap <C-D> 11jzz
+" nnoremap j jzz
+" nnoremap k kzz
+" nnoremap # #zz
+" nnoremap * *zz
+" nnoremap n nzz
+" nnoremap N Nzz
 
 " lightline colors
 " if !has('gui_running')
@@ -97,7 +100,6 @@ let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
-
 
 " Solarized prefs
 let g:solarized_termtrans=1
