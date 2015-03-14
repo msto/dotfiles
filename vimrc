@@ -98,6 +98,8 @@ set cursorline
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
 
 " Solarized prefs
 let g:solarized_termtrans=1
