@@ -17,6 +17,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+if [ $(hostname -s) != "eris1n3" ]; then
+    ssh eris1n3
+fi
+
 # set -o vi
 
 #if [ ! -r .ssh/authorized_keys ] ; then
