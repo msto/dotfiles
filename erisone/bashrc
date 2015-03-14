@@ -17,6 +17,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Mandate connection to eris1n3 in order to access tmux server
 if [ $(hostname -s) != "eris1n3" ]; then
     ssh eris1n3
 fi
