@@ -87,6 +87,7 @@ set cursorline
 " nnoremap * *zz
 " nnoremap n nzz
 " nnoremap N Nzz
+" set so=999
 
 " lightline colors
 " if !has('gui_running')
@@ -111,7 +112,7 @@ let NERDSpaceDelims=1
 
 " Airline prefs
 set laststatus=2
-let g:airline_enable_syntastic=1
+" let g:airline_enable_syntastic=1
 let g:airline_theme='solarized'
 " let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
@@ -159,4 +160,9 @@ let g:airline_section_z='%l:%c'
 " \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 " Latex-Box prefs
-let g:LatexBox_latexmk_options = '-pvc'
+let g:LatexBox_latexmk_options='-pvc'
+let g:LatexBox_latexmk_async=1
+let g:LatexBox_latexmk_preview_continuously=1
+let g:Tex_ViewRule_pdf = 'Skim'
+
+let g:macvim_skim_app_path='/Applications/Skim.app'
