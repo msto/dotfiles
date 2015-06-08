@@ -7,9 +7,10 @@ alias l='ls -lh --group-directories-first'
 function erisone() {
     ping -c 1 erisone.partners.org &> /dev/null
     if [ $? -eq 0 ]; then
-        ssh -X my520@erisone.partners.org
+        ssh -tY my520@erisone.partners.org
     else
-        ssh -tX my520@ssh.research.partners.org "ssh -tX my520@erisone.partners.org"
+# Test tmux here
+        ssh -tY my520@ssh.research.partners.org "ssh -tY my520@erisone.partners.org"
     fi
 }
 
