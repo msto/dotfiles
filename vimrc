@@ -33,9 +33,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
-" Plugin 'itchyny/lightline.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'jpalardy/vim-slime'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'aperezdc/vim-template'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -79,22 +80,7 @@ set cursorline
 " :map j gj
 " :map k gk
 
-" Remap navigation commands to center view on cursor using zz
-" nnoremap <C-U> 11kzz
-" nnoremap <C-D> 11jzz
-" nnoremap j jzz
-" nnoremap k kzz
-" nnoremap # #zz
-" nnoremap * *zz
-" nnoremap n nzz
-" nnoremap N Nzz
-" set so=999
-
-" lightline colors
-" if !has('gui_running')
-    " set t_Co=256
-" endif
-" set noshowmode
+let g:email='mstone5@mgh.harvard.edu'
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8']
@@ -103,17 +89,32 @@ let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 
-" Solarized prefs
-let g:solarized_termtrans=1
-set background=light
+" Solarized light
+" let g:solarized_termtrans=1
+" set background=light
+" colorscheme solarized
+
+" Solarized dark
+let g:solarized_termtrans=0
+set background=dark
 colorscheme solarized
 
 " NERDCommenter prefs
 let NERDSpaceDelims=1
 
+" vim-template prefs
+let g:templates_directory='~/.vim/templates'
+let g:templates_name_prefix='template'
+let g:templates_user_variables=[['NAME', 'GetName']]
+
+" vim-template variable expansion functions
+function GetName()
+    return 'Matthew Stone'
+endfunction
+
 " Airline prefs
 set laststatus=2
-" let g:airline_enable_syntastic=1
+let g:airline_enable_syntastic=1
 let g:airline_theme='solarized'
 " let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
@@ -123,42 +124,6 @@ let g:airline_right_alt_sep='|'
 let g:airline_section_x=airline#section#create_right(['filetype'])
 let g:airline_section_y='%p%%'
 let g:airline_section_z='%l:%c'
-
-" Lightline
-" set laststatus=2
-" let g:lightline = {
-    " \ 'colorscheme': 'solarized',
-    " \ 'active': {
-    " \   'left': [ [ 'mode', 'paste' ],
-                  " [ 'fugitive', 'filename' ] ],
-    " \   'right': [ [ 'syntastic', 'lineinfo' ],
-    " \              ['percent'],
-    " \              ['filetype'] ]
-    " \ },
-    " \ 'component_expand': {
-    " \   'syntastic': 'SyntasticStatuslineFlag',
-    " \ },
-    " \ 'component_type': {
-    " \   'syntastic': 'error',
-    " \ },
-    " \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-    " \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
-    " \ }
-
-" augroup AutoSyntastic
-  " autocmd!
-  " autocmd BufWritePost *.c,*.cpp call s:syntastic()
-" augroup END
-" function! s:syntastic()
-  " SyntasticCheck
-  " call lightline#update()
-" endfunction
-
-    " \ 'separator': { 'left': "", 'right': "" },
-    " \ 'subseparator': { 'left': "", 'right': "" }
-" Arrow separators (requires patched font)
-" \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
-" \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 " Latex-Box prefs
 let g:LatexBox_latexmk_options='-pvc -xelatex'

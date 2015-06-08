@@ -1,11 +1,19 @@
+export SCRATCH_TMP=/scratch/miket/my520/tmp
+
 # this makes nano print line numbers at all times
 alias nano="nano -c -w";
 
-# shortcut for ls
+# Shortcut for ls
 alias l='ls -lh --group-directories-first'
 
-alias pytl='pytemplate.sh'
+# Syntax highlighting for `less`
+function cless() {
+    pygmentize -f 256 -O style=solarizedlight -g "$1" | less -R
+}
 
+alias ipy='ipython'
+
+alias pytl='pytemplate.sh'
 alias tunnel='ssh my520@ssh.research.partners.org'
 
 alias prebwa='bsub -J pyPreBWA -o pyPreBWA.out -e pyPreBWA.err -q normal preBWA.py'
@@ -13,7 +21,25 @@ alias pipeline='bsub -J pipeline -o pipeline.out -e pipeline.err -q normal pipel
 alias gatkpp='bsub -J preprocess_gatk -q normal -o gatk_preprocessing.out -e gatk_preprocessing.err gatk_preprocessing.py'
 
 # alias interact='bsub -Is -q interact /bin/bash'
-alias interact='bsub -Is -q interact -sla miket_sc /bin/bash'
+# alias interact='bsub -Is -q interact -sla miket_sc /bin/bash'
+
+function interact() {
+
+    local OPTIND opt CORES
+    CORES=1
+    while getopts "n:" opt; do
+        case "${opt}" in 
+        n)
+            CORES="${OPTARG}"
+            ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+
+    # echo $CORES
+
+    bsub -Is -q interact -sla miket_sc -n ${CORES} /bin/bash
+}
 
 alias vless='vim -u /usr/share/vim/vim72/macros/less.vim'
 export LESS='-S'
@@ -31,7 +57,7 @@ export MACHTYPE=x86_64
 # PICARD_DIR=/data/talkowski/tools/bin/picard-current/picard-tools-1.74
 
 # export PICARD_DIR=/apps/source/picard-tools-1.75/picard-tools-1.75
-export PICARD_DIR=/data/talkowski/tools/bin/picard
+# export PICARD_DIR=/data/talkowski/tools/bin/picard
 #export GATK_DIR=/apps/source/gatk-2.2-4/GenomeAnalysisTK-2.2-4-g4a174fb
 export GATK_DIR=/data/talkowski/tools/bin/gatk
 export GATK_BUNDLE=/data/HD/dataset/gatk-bundle-1.5-hg19
