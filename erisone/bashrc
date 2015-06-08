@@ -3,102 +3,47 @@
 # User specific aliases and functions
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# Mandate connection to eris1n3 in order to access tmux server
-if [ $(hostname -s) != "eris1n3" ]; then
-    ssh eris1n3
-fi
-
 # set -o vi
-
-#if [ ! -r .ssh/authorized_keys ] ; then
-#	ssh-keygen -t rsa
-#	cp .ssh/id_rsa.pub .ssh/authorized_keys
-#fi
 
 #PS1="\e[0;34m$PS1\e[m"
 
-# modules definitions
-#if [ -n "$MODULESHOME" ] ; then
-#	module use /shr/modules
-#	module load matlab/default
-#	module load intel/cce/10.1/default
-#	module load gcc/4.4/default
-#	module load ncbi/default
-#	module load blat/default
-#fi
-
-module load gcc-4.4
+# Base modules
+module load gcc/4.9.0
 module load java-1.6_18
-module load fftw-3.2.2
-#module load python-2.7.3
-#module load R-2.12.2
-module load samtools-0.1.18 
-module load tophat-1.4.1
-module load bowtie-0.12.7
-module load bamtools_5.31.2012
-module load gnuplot-4.4.3
-module load casava-1.8.2
-#module load bwa-0.5.9
-#module load cufflinks-1.3.0
-#module load blast
-#module load picardtools-1.58
-module load picard-tools-1.75
-module load matlab-2011b
-module load emacs-24.1
-#module load vcftools_0.1.9
-#module load gatk-2.0.39
-module load gatk-2.2-4
-module load R-2.15.2
-module load IGV-2.0.34
-#module load bedtools
-#export LAMRSH="ssh -x"
-module load boost-1.38.0
-module load zlib-1.2.7
-#module load python-3.2.3
-module load tabix
-module load jdk-7.7
-module load matlab/2014a
-module load vim/default
-# module load gcc/default
-module load gsl-1.15
-
-module load lapack-blas-libs
 module load R/3.0.2
-# module load R/3.1.0
+module load cmake/3.0.2
+module load BioPerl-1.6.901 
+module load ncbi-blast-2.2.26 
+module load vim/default
+module load zlib/1.2.8
+module load blatSrc35
 
 # Custom modules
-# Use lab to sanitize namespace (shouldn't be issue)
+# Use lab to avoid module naming conflicts (shouldn't be issue)
 # Use lab/miket if you want `module avail` to be useable
 # module use /apps/modulefiles/lab
 module use /apps/modulefiles/lab/miket
 module load git/2.0.1
 module load bwa/0.7.10
 module load freebayes/0.9.14
-module load lumpy/0.2.5
+module load lumpy/0.2.11
 module load parallel/20140622
 module load sambamba/0.4.7
 module load samblaster/0.1.16
 module load snpEff/3.6
 module load vcflib/20140715
 module load CNVnator/0.3
-module load delly/0.5.5
-# module load bedtools/2.20.1
+module load delly/0.5.9
 module load bedtools/2.22.1
-#module load miniconda/3.5.5
 module load anaconda/2.0.1
 # module load anaconda3/2.0.1
 module load ctags/5.8
@@ -106,17 +51,75 @@ module load ack/2.12
 module load fastqc/0.11.2
 module load trim_galore/0.3.7
 module load fastx/0.0.13
-module load samtools/1.0
+module load samtools/1.2
+module load htslib/1.2.1
 module load aspera-connect/3.4.2
 module load simNGS/1.7
 module load SVsim/0.1.1
 module load tmux/1.9a
+module load boost/1.58.0
+module load seqan/2.0.0
+module load spades/3.5.0
+module load age/0.4
+module load mongodb/3.0.3
+module load picard/1.131
+module load vcftools/0.1.12b
+# module load gatk-2.2-4
 
+# SV callers
+module load meerkat/0.185
+module load jemalloc/3.6.0
+module load tigra/0.1.3.3
+module load hydra/0.5.5 
+module load pindel/0.2.5
+module load breakdancer/1.3.6
+module load gasvpro/1.2 
+
+# Assembly
+module load discovar/52488
+module load discovar_denovo/52488
+module load soapdenovo/2.04-r240 
+module load abyss/1.5.2
+module load celera/8.3rc1
+
+# Cancer
+module load openmpi-1.6.3
+module load smufin/0.9.3
+module load novobreak/1.04
+
+# Pacbio
+module load hdf/1.8.14
+module load blasr/latest
+
+module rm gcc/4.9.0
+module load gcc/4.9.0
+
+# Legacy
+# module load fftw-3.2.2
+# module load tophat-1.4.1
+# module load bowtie-0.12.7
+# module load bamtools_5.31.2012
+# module load gnuplot-4.4.3
+# module load casava-1.8.2
+# module load matlab-2011b
+# module load emacs-24.1
+# module load IGV-2.0.34
+# module load jdk-7.7
+# module load matlab/2014a
+# module load gsl-1.15
+# module load lapack-blas-libs
 
 # [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
 
 PYTHONPATH=$PYTHONPATH:$HOME/code
 PYTHONPATH=$PYTHONPATH:$HOME/code/dna-scripts
+PYTHONPATH=$PYTHONPATH:$HOME/code/svtoolkit
 export PYTHONPATH
 
 export LSF_INCLUDEDIR=/hptc_cluster/lsf/8.0/include
+
+# Load last tmux session
+# if [ $(hostname -s) == "eris1n3" ]; then
+    # (tmux ls | grep -vq attached && tmux at) || tmux new
+# fi
+

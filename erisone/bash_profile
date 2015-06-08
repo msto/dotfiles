@@ -11,8 +11,14 @@ if [ $? != 0 ]; then
   tee $HOME/.hushlogin < /etc/motd
 fi
 
-# User specific environment and startup programs
+# Don't want nano to be default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
+# Set default reference
+export GRCH37=/data/talkowski/tools/ref/Ensembl_hgGRCh37_71_reord_bwa07/Ensembl_hgGRCh37_71_ERCC_reord.fa
+
+# User specific environment and startup programs
 
 # Add github repositories to $PATH
 PATH=$PATH:$HOME/code/classifier
@@ -30,6 +36,12 @@ PATH=$PATH:/data/talkowski/tools/code
 PATH=$PATH:/data/talkowski/tools/local/bin
 PATH=$PATH:/data/talkowski/tools/local/src/bedtools-master/bin
 
+# For add_module.py
+PATH=$PATH:/apps/modulefiles/lab/miket
+
+# required for SMUFIN
+PATH=$PATH:/apps/source/openmpi-1.6.3/bin
+
 export PATH
 
 # PYTHONPATH=$PYTHONPATH:$HOME/code
@@ -42,4 +54,14 @@ export PERL5LIB
 
 export DRMAA_LIBRARY_PATH=/data/talkowski/tools/local/lib/libdrmaa.so.1.0.3
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/libevent/2.0.21/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/libevent/2.0.21/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/meerkat/0.185/src/mybamtools/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/source/openmpi-1.6.3/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/source/zlib/1.2.8/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/hdf/1.8.14/lib
+export LD_LIBRARY_PATH
+
+export HDF5INCLUDEDIR=/apps/lab/miket/hdf/1.8.14/include
+export HDF5LIBDIR=/apps/lab/miket/hdf/1.8.14/lib
+
+unset R_HOME
