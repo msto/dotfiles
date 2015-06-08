@@ -125,4 +125,9 @@ let g:airline_section_y='%p%%'
 let g:airline_section_z='%l:%c'
 
 " Latex-Box prefs
-let g:LatexBox_latexmk_options = '-pvc'
+let g:LatexBox_latexmk_options='-pvc'
+let g:LatexBox_latexmk_async=1
+let g:LatexBox_latexmk_preview_continuously=1
+let g:Tex_ViewRule_pdf = 'Skim'
+
+let g:macvim_skim_app_path='/Applications/Skim.app'
