@@ -30,11 +30,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
 " Plugin 'itchyny/lightline.vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'jpalardy/vim-slime'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -160,7 +161,7 @@ let g:airline_section_z='%l:%c'
 " \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 " Latex-Box prefs
-let g:LatexBox_latexmk_options='-pvc'
+let g:LatexBox_latexmk_options='-pvc -xelatex'
 let g:LatexBox_latexmk_async=1
 let g:LatexBox_latexmk_preview_continuously=1
 let g:Tex_ViewRule_pdf = 'Skim'
