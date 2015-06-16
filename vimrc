@@ -106,6 +106,7 @@ let NERDSpaceDelims=1
 let g:templates_directory='~/.vim/templates'
 let g:templates_name_prefix='template'
 let g:templates_user_variables=[['NAME', 'GetName']]
+" let g:templates_no_builtin_templates=1
 
 " vim-template variable expansion functions
 function GetName()

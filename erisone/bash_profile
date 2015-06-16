@@ -15,6 +15,8 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+export TMPDIR=/scratch/miket/my520/tmp
+
 # Set default reference
 export GRCH37=/data/talkowski/tools/ref/Ensembl_hgGRCh37_71_reord_bwa07/Ensembl_hgGRCh37_71_ERCC_reord.fa
 
@@ -30,11 +32,11 @@ PATH=$PATH:$HOME/code/talkowskidb
 PATH=$PATH:$HOME/code/pycluster
 PATH=$PATH:$HOME/code/readpaircluster
 
-PATH=$PATH:$HOME/bin
-PATH=$PATH:/data/talkowski/tools/bin
-PATH=$PATH:/data/talkowski/tools/code
-PATH=$PATH:/data/talkowski/tools/local/bin
-PATH=$PATH:/data/talkowski/tools/local/src/bedtools-master/bin
+# PATH=$PATH:$HOME/bin
+# PATH=$PATH:/data/talkowski/tools/bin
+# PATH=$PATH:/data/talkowski/tools/code
+# PATH=$PATH:/data/talkowski/tools/local/bin
+# PATH=$PATH:/data/talkowski/tools/local/src/bedtools-master/bin
 
 # For add_module.py
 PATH=$PATH:/apps/modulefiles/lab/miket
