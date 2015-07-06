@@ -14,6 +14,12 @@ function erisone() {
     fi
 }
 
+function eriscp() {
+    scp my520@erisone.partners.org:$@
+}
+
+alias idea='ssh my520@erisdcasmdw.partners.org'
+
 export -f erisone
 
 alias tunnel='ssh my520@ssh.research.partners.org'
