@@ -25,20 +25,21 @@ alias gatkpp='bsub -J preprocess_gatk -q normal -o gatk_preprocessing.out -e gat
 
 function interact() {
 
-    local OPTIND opt CORES
-    CORES=1
-    while getopts "n:" opt; do
-        case "${opt}" in 
-        n)
-            CORES="${OPTARG}"
-            ;;
-        esac
-    done
-    shift $((OPTIND - 1))
+    # local OPTIND opt CORES
+    # CORES=1
+    # while getopts "n:" opt; do
+        # case "${opt}" in 
+        # n)
+            # CORES="${OPTARG}"
+            # ;;
+        # esac
+    # done
+    # shift $((OPTIND - 1))
 
     # echo $CORES
 
-    bsub -Is -q interact -sla miket_sc -n ${CORES} /bin/bash
+    # bsub -Is -q interact -sla miket_sc -n ${CORES} /bin/bash
+    bsub -Is -q interact -sla miket_sc $@ /bin/bash
 }
 
 alias vless='vim -u /usr/share/vim/vim72/macros/less.vim'
