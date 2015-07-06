@@ -5,6 +5,11 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
+# Base16 shell
+# BASE16_SHELL="$HOME/.config/base16-shell/base16-twilight.dark.sh"
+# BASE16_SHELL="$HOME/.config/base16-shell/base16-tomorrow.dark.sh"
+# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # Only display updated login message
 cmp -s $HOME/.hushlogin /etc/motd
 if [ $? != 0 ]; then
@@ -15,7 +20,7 @@ fi
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
-export TMPDIR=/scratch/miket/my520/tmp
+# export TMPDIR=/scratch/miket/my520/tmp
 
 # Set default reference
 export GRCH37=/data/talkowski/tools/ref/Ensembl_hgGRCh37_71_reord_bwa07/Ensembl_hgGRCh37_71_ERCC_reord.fa
