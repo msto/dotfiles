@@ -37,6 +37,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'jpalardy/vim-slime'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'aperezdc/vim-template'
+" Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -99,6 +100,14 @@ let g:solarized_termtrans=0
 set background=dark
 colorscheme solarized
 
+" Base-16
+" let base16colorspace=256
+" set t_Co=256
+" set background=dark
+" colorscheme base16-tomorrow
+" colorscheme base16-twilight
+" colorscheme base16-ocean
+
 " NERDCommenter prefs
 let NERDSpaceDelims=1
 
@@ -117,6 +126,7 @@ endfunction
 set laststatus=2
 let g:airline_enable_syntastic=1
 let g:airline_theme='solarized'
+" let g:airline_theme='base16'
 " let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
