@@ -73,6 +73,9 @@ set number
 set relativenumber
 set cursorline
 
+" Allow vim as crontab editor
+autocmd filetype crontab setlocal nobackup nowritebackup
+
 " Don't copy line numbers
 " set mouse+=a
 
