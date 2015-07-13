@@ -73,6 +73,12 @@ set number
 set relativenumber
 set cursorline
 
+" Sane split navigation, and compatibility with vim-tmux-navigator
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
 " Allow vim as crontab editor
 autocmd filetype crontab setlocal nobackup nowritebackup
 
