@@ -38,6 +38,7 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'aperezdc/vim-template'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'derekwyatt/vim-scala'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
