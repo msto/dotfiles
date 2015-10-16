@@ -39,6 +39,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'aperezdc/vim-template'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'tpope/vim-eunuch'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -57,6 +58,7 @@ filetype plugin indent on    " required
 
 syntax on
 set modeline
+au FileType sh setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 " Soft breaks
 au FileType tex,latex setlocal spell spelllang=en_us wrap linebreak nolist "textwidth=0 wrapmargin=0
@@ -90,6 +92,12 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 " Move by line on screen
 " :map j gj
 " :map k gk
+
+" Snakemake syntax highlighting
+au BufNewFile,BufRead Snakefile set syntax=snakemake
+au BufNewFile,BufRead *.rules set syntax=snakemake
+au BufNewFile,BufRead *.snakefile set syntax=snakemake
+au BufNewFile,BufRead *.snake set syntax=snakemake
 
 let g:email='mstone5@mgh.harvard.edu'
 
