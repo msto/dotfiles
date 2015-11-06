@@ -19,6 +19,24 @@ alias tunnel='ssh my520@ssh.research.partners.org'
 alias n3='ssh eris1n3'
 alias n2='ssh eris1n2'
 
+alias tt='tmux attach -t'
+alias tl='tmux ls'
+
+function tn () {
+    session=$1
+    dirname=$2
+
+    if [[ ! -z "$dirname" ]]; then
+        cd $dirname
+    fi
+
+    if [[ ! -z "$session" ]]; then
+        tmux new -s $session
+    else
+        tmux new
+    fi
+}
+
 alias prebwa='bsub -J pyPreBWA -o pyPreBWA.out -e pyPreBWA.err -q normal preBWA.py'
 alias pipeline='bsub -J pipeline -o pipeline.out -e pipeline.err -q normal pipeline.py'
 alias gatkpp='bsub -J preprocess_gatk -q normal -o gatk_preprocessing.out -e gatk_preprocessing.err gatk_preprocessing.py'
@@ -46,11 +64,11 @@ function interact() {
 }
 
 function lshost() {
-    cat <(lshosts | head -n1) <(lshosts | grep -e "$1")
+    cat <(lshosts | head -n1) <(lshosts | grep -P -e "$1")
 }
 
 function bhost() {
-    cat <(bhosts | head -n1) <(bhosts | grep -e "$1")
+    cat <(bhosts | head -n1) <(bhosts | grep -P -e "$1")
 }
 
 alias vless='vim -u /usr/share/vim/vim72/macros/less.vim'
