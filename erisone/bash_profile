@@ -37,12 +37,6 @@ PATH=$PATH:$HOME/code/talkowskidb
 PATH=$PATH:$HOME/code/pycluster
 PATH=$PATH:$HOME/code/readpaircluster
 
-# PATH=$PATH:$HOME/bin
-# PATH=$PATH:/data/talkowski/tools/bin
-# PATH=$PATH:/data/talkowski/tools/code
-# PATH=$PATH:/data/talkowski/tools/local/bin
-# PATH=$PATH:/data/talkowski/tools/local/src/bedtools-master/bin
-
 # For add_module.py
 PATH=$PATH:/apps/modulefiles/lab/miket
 
@@ -61,6 +55,7 @@ export PERL5LIB
 
 export DRMAA_LIBRARY_PATH=/data/talkowski/tools/local/lib/libdrmaa.so.1.0.3
 
+# TODO: Handle in modules
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/libevent/2.0.21/lib
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/lab/miket/meerkat/0.185/src/mybamtools/lib
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/apps/source/openmpi-1.6.3/lib
