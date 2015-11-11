@@ -12,9 +12,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# Load modules
-if [ -f ~/.modulerc ]; then
-    . ~/.modulerc
+# Load modules (automatically done by module)
+if [ -f ~/.modules ]; then
+    . ~/.modules
 fi
 
 # set -o vi

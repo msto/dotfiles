@@ -1,4 +1,5 @@
-# .modulerc
+#%Module
+#.modulerc
 
 # Loading of cluster modules
 
