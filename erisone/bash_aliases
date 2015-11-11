@@ -37,6 +37,8 @@ function tn () {
     fi
 }
 
+alias blog='less ~/jobs.log'
+
 alias prebwa='bsub -J pyPreBWA -o pyPreBWA.out -e pyPreBWA.err -q normal preBWA.py'
 alias pipeline='bsub -J pipeline -o pipeline.out -e pipeline.err -q normal pipeline.py'
 alias gatkpp='bsub -J preprocess_gatk -q normal -o gatk_preprocessing.out -e gatk_preprocessing.err gatk_preprocessing.py'
@@ -69,6 +71,11 @@ function lshost() {
 
 function bhost() {
     cat <(bhosts | head -n1) <(bhosts | grep -P -e "$1")
+}
+
+function bak() {
+    f=$1
+    cp $f ${f}.bak
 }
 
 alias vless='vim -u /usr/share/vim/vim72/macros/less.vim'
