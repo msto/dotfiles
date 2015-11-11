@@ -1,4 +1,8 @@
 #-----------------------------------------------------------------------------
 #Min    Hour    Day     Month   Weekday Command
 #-----------------------------------------------------------------------------
-0       0       *       *       *       tmpwatch 3d $TMPDIR
+0       0       *       *       *       /usr/bin/tmpwatch 3d /scratch/miket/my520/tmp
+0       0       *       *       *       /bin/bash /PHShome/my520/code/cronscripts/du.sh /scratch/miket
+0       0       *       *       *       /bin/bash /PHShome/my520/code/cronscripts/du.sh /data/talkowski
+0       0       *       *       *       /bin/bash /PHShome/my520/code/cronscripts/updatedb.sh
+0,30    *       *       *       *       /bin/bash /PHShome/my520/code/cronscripts/log_jobs.sh /PHShome/my520/jobs.log
