@@ -109,28 +109,30 @@ let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 
 " Solarized light
-" let g:solarized_termtrans=1
-" set background=light
-" colorscheme solarized
+let g:solarized_termtrans=1
+set background=light
+colorscheme solarized
 
 " Solarized dark
-let g:solarized_termtrans=0
-set background=dark
-colorscheme solarized
+" let g:solarized_termtrans=0
+" set background=dark
+" colorscheme solarized
 
 " NERDCommenter prefs
 let NERDSpaceDelims=1
 
 " vim-template prefs
-let g:templates_directory='~/.vim/templates'
+let g:templates_directory=['~/.vim/templates']
 let g:templates_name_prefix='template'
 let g:templates_user_variables=[['NAME', 'GetName']]
 " let g:templates_no_builtin_templates=1
 
 " vim-template variable expansion functions
-function GetName()
-    return 'Matthew Stone'
-endfunction
+if !exists("*GetName")
+    function GetName()
+        return 'Matthew Stone'
+    endfunction
+endif
 
 " Airline prefs
 set laststatus=2
