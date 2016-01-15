@@ -24,6 +24,8 @@ fi
 PYTHONPATH=$PYTHONPATH:$HOME/code
 PYTHONPATH=$PYTHONPATH:$HOME/code/dna-scripts
 PYTHONPATH=$PYTHONPATH:$HOME/code/svtoolkit
+PYTHONPATH=$PYTHONPATH:$HOME/code/readpaircluster
+PYTHONPATH=$PYTHONPATH:$HOME/code/readpaircluster/inheritance
 export PYTHONPATH
 
 export LSF_INCLUDEDIR=/hptc_cluster/lsf/8.0/include
@@ -33,3 +35,4 @@ export LSF_INCLUDEDIR=/hptc_cluster/lsf/8.0/include
     # (tmux ls | grep -vq attached && tmux at) || tmux new
 # fi
 
+source activate py35 2> /dev/null
