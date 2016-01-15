@@ -19,3 +19,8 @@ export MANPATH
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export VISUAL=vim
+
+PYTHONPATH=$PYTHONPATH:~/code
+# PYTHONPATH=$PYTHONPATH:~/code/readpaircluster
+PYTHONPATH=$PYTHONPATH:~/code/readpaircluster/inheritance
+export PYTHONPATH

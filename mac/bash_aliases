@@ -22,10 +22,17 @@ function eriscp() {
 
 alias idea='ssh my520@erisdcasmdw.partners.org'
 
-alias mount_erisone='sshfs my520@erisone.partners.org:/PHShome/my520/ /Users/msto/erisone/'
-alias mount_sfari='sshfs my520@erisone.partners.org:/data/talkowski/Samples/SFARI/ /Users/msto/sfari/'
+alias mount_erisone='sshfs -o reconnect my520@erisone.partners.org:/PHShome/my520/ /Users/msto/erisone/'
+alias mount_talkowski='sshfs -o reconnect my520@erisone.partners.org:/data/talkowski /Users/msto/talkowski/'
+alias mount_sfari='sshfs -o reconnect my520@erisone.partners.org:/data/talkowski/Samples/SFARI/ /Users/msto/sfari/'
+# alias mount_sfari='sshfs my520@erisone.partners.org:/data/talkowski/Samples/SFARI/ /Users/msto/sfari/'
+alias remount_sfari='diskutil unmount force /Users/msto/sfari; mount_sfari'
 
 alias tunnel='ssh my520@ssh.research.partners.org'
 alias anthill='ssh msto@anthill.cs.dartmouth.edu'
 
 alias nohead='sed -e "/^#/d"'
+
+alias nb='ipython notebook'
+
+export LESS='-S'
