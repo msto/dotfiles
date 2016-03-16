@@ -17,7 +17,8 @@ def %FILE%():
 
 def main():
     parser = argparse.ArgumentParser(
-        description="")
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
 
     args = parser.parse_args()
 
