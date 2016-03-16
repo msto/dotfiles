@@ -33,6 +33,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'jpalardy/vim-slime'
 Plugin 'flazz/vim-colorschemes'
@@ -41,8 +42,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-eunuch'
 " Plugin 'Valloric/YouCompleteMe'
-Plugin 'ervandew/supertab'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
