@@ -41,8 +41,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-eunuch'
 " Plugin 'Valloric/YouCompleteMe'
-Plugin 'ervandew/supertab'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -105,6 +105,9 @@ au BufNewFile,BufRead *.snake set syntax=snakemake
 au BufNewFile,BufRead *.tex set syntax=tex
 
 let g:email='mstone5@mgh.harvard.edu'
+
+" Enable jedi completion with supertab
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8']
