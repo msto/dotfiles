@@ -100,6 +100,8 @@ au BufNewFile,BufRead *.rules set syntax=snakemake
 au BufNewFile,BufRead *.snakefile set syntax=snakemake
 au BufNewFile,BufRead *.snake set syntax=snakemake
 
+au BufNewFile,BufRead *.tex set syntax=tex
+
 let g:email='mstone5@mgh.harvard.edu'
 
 " Syntastic prefs
