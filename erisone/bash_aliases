@@ -30,6 +30,8 @@ alias gatkpp='bsub -J preprocess_gatk -q normal -o gatk_preprocessing.out -e gat
 
 alias py3='source activate py35'
 
+alias noheader="sed '/^#/d'"
+
 # Specify lsf parameters when invoking an interactive job
 function interact() {
     bsub -Is -q interact -sla miket_sc $@ /bin/bash
