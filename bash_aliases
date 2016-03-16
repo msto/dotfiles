@@ -12,13 +12,10 @@ alias tt='tmux attach -t'
 alias tl='tmux ls'
 function tn () {
     session=$1
-    dirname=$2
 
-    if [[ ! -z "$dirname" ]]; then
-        cd $dirname
-    fi
-
-    if [[ ! -z "$session" ]]; then
+    if [[ "$session" == "-t" ]]; then
+        tmux new $@
+    elif [[ ! -z "$session" ]]; then
         tmux new -s $session
     else
         tmux new
