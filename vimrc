@@ -107,6 +107,9 @@ au BufNewFile,BufRead *.tex set syntax=tex
 
 let g:email='mstone5@mgh.harvard.edu'
 
+" Enable jedi completion with supertab
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_tex_checkers = ['lacheck']
