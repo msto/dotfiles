@@ -29,8 +29,9 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -39,7 +40,7 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'aperezdc/vim-template'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'derekwyatt/vim-scala'
+" Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-eunuch'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
@@ -109,6 +110,10 @@ let g:email='mstone5@mgh.harvard.edu'
 
 " Enable jedi completion with supertab
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
+" Slime
+let g:slime_target = "tmux"
+let g:slime_python_ipython = 1
 
 " Syntastic prefs
 let g:syntastic_python_checkers = ['flake8']
