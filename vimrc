@@ -45,6 +45,7 @@ Plugin 'tpope/vim-eunuch'
 " Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'
+Plugin 'mgedmin/pythonhelper.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -158,6 +159,7 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_left_alt_sep='|'
 let g:airline_right_alt_sep='|'
+let g:airline_section_c='%f : %{TagInStatusLine()}'
 let g:airline_section_x=airline#section#create_right(['filetype'])
 let g:airline_section_y='%p%%'
 let g:airline_section_z='%l:%c'
