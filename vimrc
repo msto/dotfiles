@@ -160,6 +160,7 @@ let g:airline_right_sep=''
 let g:airline_left_alt_sep='|'
 let g:airline_right_alt_sep='|'
 let g:airline_section_c='%f : %{TagInStatusLine()}'
+let g:airline_section_c=airline#section#create_left(['file', '%{TagInStatusLine()}'])
 let g:airline_section_x=airline#section#create_right(['filetype'])
 let g:airline_section_y='%p%%'
 let g:airline_section_z='%l:%c'
