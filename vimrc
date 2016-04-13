@@ -43,8 +43,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-eunuch'
 " Plugin 'Valloric/YouCompleteMe'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'ervandew/supertab'
 Plugin 'mgedmin/pythonhelper.vim'
 
 " All of your Plugins must be added before the following line
@@ -122,6 +122,7 @@ let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
 
 " Solarized light
 let g:solarized_termtrans=1
