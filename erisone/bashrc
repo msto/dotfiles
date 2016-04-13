@@ -20,6 +20,7 @@ fi
 # set -o vi
 
 #PS1="\e[0;34m$PS1\e[m"
+export PS1='[\u@\h \W]\$ '
 
 PYTHONPATH=$PYTHONPATH:$HOME/code
 PYTHONPATH=$PYTHONPATH:$HOME/code/dna-scripts
