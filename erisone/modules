@@ -23,7 +23,7 @@ module use /apps/modulefiles/lab/miket
 
 # Utilities
 module load vim/7.4.1558
-module load git/2.0.1
+module load git/2.8.1
 module load parallel/20140622
 module load aspera-connect/3.4.2
 module load tmux/1.9a
