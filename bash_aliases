@@ -7,6 +7,11 @@ function cless() {
 
 alias tunnel='ssh my520@ssh.research.partners.org'
 
+function awssh() {
+    ssh -i ~/.ssh/aws_master.pem ec2-user@${1}
+}
+
+
 # Tmux helpers
 alias tt='tmux attach -t'
 alias tl='tmux ls'
