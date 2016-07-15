@@ -51,6 +51,15 @@ function bak() {
     cp $f ${f}.bak
 }
 
+# UCSC Blat parameters
+function blat_ucsc () {
+  db=/data/talkowski/tools/ref/human_g1k_v37/human_g1k_v37.2bit
+  query=$1
+  output=$2
+
+  blat -stepSize=5 -repMatch=2253 -minScore=0 -minIdentity=0 $db $query $output
+}
+
 # Open matlab shell on remote host
 alias matshell='matlab -nojvm -nodisplay -nosplash'
 
@@ -97,3 +106,15 @@ mad=met37@bricklayer01.partners.org
 
 # DIPR
 # dipr=cc472@172.27.111.200
+
+function sscID {
+  fgrep -e "${1}" ~/sfari/lists/519families_idmapping | cut -f2
+}
+
+function s3bam {
+  sample=$1
+  quad=$(echo $sample | cut -d"." -f1)
+  ssc=$(sscID $sample)
+
+  echo "s3://sscwgs/${quad}/BAM/Sample_${ssc}/analysis/${ssc}.final.bam"
+}
