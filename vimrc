@@ -26,13 +26,12 @@ Plugin 'gmarik/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdcommenter'
-" Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'ctrlpvim/ctrlp.vim'
-" Plugin 'mileszs/ack.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -40,13 +39,19 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'aperezdc/vim-template'
 Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'derekwyatt/vim-scala'
 Plugin 'tpope/vim-eunuch'
+Plugin 'mgedmin/pythonhelper.vim'
+Plugin 'tpope/vim-obsession'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'broadinstitute/vim-wdl'
+" Plugin 'ajh17/VimCompletesMe'
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'mileszs/ack.vim'
+" Plugin 'derekwyatt/vim-scala'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'ervandew/supertab'
-Plugin 'mgedmin/pythonhelper.vim'
-Plugin 'rust-lang/rust.vim'
+" Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -149,6 +154,13 @@ if !exists("*GetName")
     function GetName()
         return 'Matthew Stone'
     endfunction
+endif
+
+" Null string if not a python file
+if !exists("*TagInStatusLine")
+  function TagInStatusLine()
+    return ''
+  endfunction
 endif
 
 " Airline prefs
