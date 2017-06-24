@@ -26,32 +26,38 @@ Plugin 'gmarik/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-" Plugin 'scrooloose/syntastic'
-Plugin 'w0rp/ale'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'jpalardy/vim-slime'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'aperezdc/vim-template'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tpope/vim-eunuch'
-Plugin 'mgedmin/pythonhelper.vim'
-Plugin 'tpope/vim-obsession'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'broadinstitute/vim-wdl'
+" Asynchronous plugins require vim>=0.8
+if v:version < 800
+    Plugin 'scrooloose/syntastic'               " Linter
+else
+    Plugin 'w0rp/ale'                           " Linter
+endif
+
+" Restrict heavy plugins (i.e. autocomplete) to local machine
+if has('macunix')
+    Plugin 'davidhalter/jedi-vim'
+    Plugin 'ervandew/supertab'
+endif
+
+Plugin 'altercation/vim-colors-solarized'       " Colorscheme
+Plugin 'scrooloose/nerdcommenter'               " Auto-commenting
+Plugin 'tpope/vim-fugitive'                     " Git integration
+Plugin 'bling/vim-airline'                      " Status bar
+Plugin 'vim-airline/vim-airline-themes'         " Status bar customization
+Plugin 'jpalardy/vim-slime'                     " SLIME
+Plugin 'aperezdc/vim-template'                  " Default templates by filetype
+Plugin 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
+Plugin 'tpope/vim-eunuch'                       " Unix commands
+Plugin 'mgedmin/pythonhelper.vim'               " Show parent block in status
+Plugin 'tpope/vim-obsession'                    " Backups
+Plugin 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
+Plugin 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
+Plugin 'flazz/vim-colorschemes'                 " (?) More colorschemes
+Plugin 'Shougo/neocomplete.vim'                 " (?) Autocompletion
 " Plugin 'ajh17/VimCompletesMe'
 " Plugin 'scrooloose/nerdtree'
 " Plugin 'mileszs/ack.vim'
-" Plugin 'derekwyatt/vim-scala'
 " Plugin 'Valloric/YouCompleteMe'
-" Plugin 'davidhalter/jedi-vim'
-" Plugin 'ervandew/supertab'
-" Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
