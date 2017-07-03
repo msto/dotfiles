@@ -46,7 +46,9 @@ Plugin 'tpope/vim-eunuch'
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'ervandew/supertab'
 Plugin 'mgedmin/pythonhelper.vim'
-Plugin 'rust-lang/rust.vim'
+" Plugin 'rust-lang/rust.vim'
+Plugin 'vimwiki/vimwiki'
+Plugin 'tpope/vim-obsession'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
