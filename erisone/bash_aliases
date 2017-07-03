@@ -6,6 +6,8 @@ fi
 export SCRATCH_TMP=/scratch/miket/my520/tmp
 
 # Shortcut for ls
+# alias ls='ls -F'
+alias ls='ls --color=auto -F'
 alias l='ls -lh --group-directories-first'
 
 # Never wrap lines in less
@@ -16,8 +18,20 @@ export LESS='-S'
 
 # alias ipy='ipython'
 
-alias n3='ssh eris1n3'
-alias n2='ssh eris1n2'
+function n3() {
+  host=$(hostname | cut -d"." -f1)
+  if [[ $host != "eris1n3" ]]; then
+    ssh eris1n3
+  fi
+}
+function n2() {
+  host=$(hostname | cut -d"." -f1)
+  if [[ $host != "eris1n2" ]]; then
+    ssh eris1n2
+  fi
+}
+# alias n3='ssh eris1n3'
+# alias n2='ssh eris1n2'
 
 alias blog='less ~/jobs.log'
 
@@ -44,6 +58,29 @@ function lshost() {
 
 function bhost() {
     cat <(bhosts | head -n1) <(bhosts | grep -P -e "$1")
+}
+
+function ourhosts() {
+   bhost "(cn02[1-4]|cmu16[1-5]|cn05[5-9]|cn06[0-4])"
+}
+
+function ourhostusers(){
+  bjobs -u all \
+    | awk -v OFS="\t" '{print $2, $4, $6}' \
+    | egrep "(cn02[1-4]|cmu16[1-5]|cn05[5-9]|cn06[0-4])" \
+    | awk -v OFS="\t" '{print $1, $2}' \
+    | sort \
+    | uniq -c
+}
+
+function ourhostload() {
+  host_count=$(ourhosts | sed '1d' | wc -l)
+  
+  capacity=$(ourhosts | awk '{cores+=$4} END {print cores}')
+  load=$(ourhosts | awk '{cores+=$5} END {print cores}')
+  avail=$((capacity - load))
+  
+  echo "${avail}/${capacity} cores available on $host_count hosts"
 }
 
 function bak() {
@@ -117,4 +154,19 @@ function s3bam {
   ssc=$(sscID $sample)
 
   echo "s3://sscwgs/${quad}/BAM/Sample_${ssc}/analysis/${ssc}.final.bam"
+}
+
+# Show talkowski disk usage
+function talk_df {
+  df -h \
+    | fgrep -e "/scratch/miket" -e "/data/talkowski" \
+    | fgrep -v -e "panfs://" \
+    | awk -v OFS="\t" '{print $5, $1, $2, $3, $4}' \
+    | cat <(echo -e "Mount\tSize\tUsed\tAvail\tUse%") - \
+    | column -t
+}
+
+# Get job status summary
+function bstat() {
+  bjobs $@ | sed '1d' | awk '{print $3}' | sort | uniq -c
 }

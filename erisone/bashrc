@@ -20,9 +20,16 @@ fi
 # set -o vi
 
 #PS1="\e[0;34m$PS1\e[m"
+
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/::\1/'
+}
+
 export PS1='[\u@\h \W]\$ '
+export PS1='[\u@\h \W$(parse_git_branch)]\$ '
 
 PYTHONPATH=$PYTHONPATH:$HOME/code
+PYTHONPATH=$HOME/code/svcf:$PYTHONPATH
 PYTHONPATH=$PYTHONPATH:$HOME/code/dna-scripts
 PYTHONPATH=$PYTHONPATH:$HOME/code/svtoolkit
 PYTHONPATH=$PYTHONPATH:$HOME/code/readpaircluster
@@ -35,5 +42,13 @@ export LSF_INCLUDEDIR=/hptc_cluster/lsf/8.0/include
 # if [ $(hostname -s) == "eris1n3" ]; then
     # (tmux ls | grep -vq attached && tmux at) || tmux new
 # fi
+
+HISTFILESIZE=400000000
+HISTSIZE=10000
+HISTCONTROL=ignoreboth
+HISTIGNORE='ls'
+HISTTIMEFORMAT='%F %T '
+PROMPT_COMMAND="history -a"
+shopt -s histappend
 
 source activate py35 2> /dev/null
