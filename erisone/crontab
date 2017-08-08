@@ -1,9 +1,9 @@
 #-----------------------------------------------------------------------------
-# Minute    Hour    Day   Month   Weekday     Command
+# Minute    Hour    Day    Month    Weekday      Command
 #-----------------------------------------------------------------------------
-       0       0      *       *         *     /usr/bin/tmpwatch 3d /scratch/miket/my520/tmp
-       0      18      *       *         5     /bin/bash /PHShome/my520/code/cronscripts/bsub_ncdu.sh /scratch/miket
-       0      18      *       *         5     /bin/bash /PHShome/my520/code/cronscripts/bsub_ncdu.sh /data/talkowski
-       0      18      *       *         5     /bin/bash /PHShome/my520/code/cronscripts/bsub_updatedb.sh
-    0,30       *      *       *         *     /bin/bash /PHShome/my520/code/cronscripts/log_jobs.sh /PHShome/my520/jobs.log
-       0       *      *       *         *     /bin/bash /PHShome/my520/code/cronscripts/archive_history.sh
+       0       0      *        *          *      /usr/bin/tmpwatch 3d /scratch/miket/my520/tmp
+       0      18      *        *          5      /bin/bash /PHShome/my520/code/cronscripts/bsub_ncdu.sh /scratch/miket
+       0      18      *        *          5      /bin/bash /PHShome/my520/code/cronscripts/bsub_ncdu.sh /data/talkowski
+       0      18      *        *          5      /bin/bash /PHShome/my520/code/cronscripts/bsub_updatedb.sh
+    0,30       *      *        *          *      /bin/bash /PHShome/my520/code/cronscripts/log_jobs.sh /PHShome/my520/jobs.log
+       0       *      *        *          *      /bin/bash /PHShome/my520/code/cronscripts/archive_history.sh
