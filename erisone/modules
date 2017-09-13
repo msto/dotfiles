@@ -24,8 +24,9 @@ module use /apps/modulefiles/lab/miket
 module load anaconda/4.0.5
 # module load anaconda/2.0.1  # Python 2
 # module load anaconda3/2.0.1  # Python 3
-module load java/1.7.0_79
-# module load java/jre1.8.0_112
+# module load java/1.7.0_79
+module load java/jre1.8.0_112
+module load scala/2.11.7
 module load julia/0.4.5
 module load rust/1.8.0
 module load R/3.3.1
@@ -33,7 +34,7 @@ module load R/3.3.1
 # Utilities
 # module load vim/7.4.1558
 module load vim/8.0.0295
-module load git/2.8.1
+module load git/2.14.1
 module load parallel/20140622
 module load aspera-connect/3.4.2
 module load tmux/1.9a
@@ -50,6 +51,9 @@ module load isl/0.16.1
 module load CGAL/4.8
 module load expat/2.1.1
 module load sparsehash/2.0.3
+module load cromwell/27
+module load wdltool/0.12
+module load ncdu/1.12
 
 # Bio utilities (File and sequence manipulation)
 module load bedtools/2.26.0

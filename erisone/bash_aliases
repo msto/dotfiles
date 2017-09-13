@@ -170,3 +170,7 @@ function talk_df {
 function bstat() {
   bjobs $@ | sed '1d' | awk '{print $3}' | sort | uniq -c
 }
+
+# WDL tools
+alias cromwell='java -jar $CROMWELL'
+alias wdltool='java -jar $WDLTOOL'
