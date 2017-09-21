@@ -33,6 +33,6 @@ alias anthill='ssh msto@anthill.cs.dartmouth.edu'
 
 alias nohead='sed -e "/^#/d"'
 
-alias nb='ipython notebook'
+alias nb='jupyter notebook'
 
 export LESS='-S'
