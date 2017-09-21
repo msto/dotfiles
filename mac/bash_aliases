@@ -1,5 +1,5 @@
 # .bash_aliases
-source ~/Dropbox/settings/dotfiles/bash_aliases
+source ~/dotfiles/bash_aliases
 
 # Shortcut for ls
 alias l='ls -lh --group-directories-first'

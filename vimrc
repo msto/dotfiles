@@ -26,26 +26,38 @@ Plugin 'gmarik/Vundle.vim'
 " Avoid a name conflict with L9
 " Plugin 'user/L9', {'name': 'newL9'}
 
-Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdcommenter'
+" Asynchronous plugins require vim>=0.8
+if v:version < 800
+    Plugin 'scrooloose/syntastic'               " Linter
+else
+    Plugin 'w0rp/ale'                           " Linter
+endif
+
+" Restrict heavy plugins (i.e. autocomplete) to local machine
+if has('macunix')
+    Plugin 'davidhalter/jedi-vim'
+    Plugin 'ervandew/supertab'
+endif
+
+Plugin 'altercation/vim-colors-solarized'       " Colorscheme
+Plugin 'scrooloose/nerdcommenter'               " Auto-commenting
+Plugin 'tpope/vim-fugitive'                     " Git integration
+Plugin 'bling/vim-airline'                      " Status bar
+Plugin 'vim-airline/vim-airline-themes'         " Status bar customization
+Plugin 'jpalardy/vim-slime'                     " SLIME
+Plugin 'aperezdc/vim-template'                  " Default templates by filetype
+Plugin 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
+Plugin 'tpope/vim-eunuch'                       " Unix commands
+Plugin 'mgedmin/pythonhelper.vim'               " Show parent block in status
+Plugin 'tpope/vim-obsession'                    " Backups
+Plugin 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
+Plugin 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
+Plugin 'flazz/vim-colorschemes'                 " (?) More colorschemes
+Plugin 'Shougo/neocomplete.vim'                 " (?) Autocompletion
+" Plugin 'ajh17/VimCompletesMe'
 " Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'jpalardy/vim-slime'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'aperezdc/vim-template'
-Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'derekwyatt/vim-scala'
-Plugin 'tpope/vim-eunuch'
 " Plugin 'Valloric/YouCompleteMe'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-Plugin 'mgedmin/pythonhelper.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -122,6 +134,7 @@ let g:syntastic_tex_checkers = ['lacheck']
 let g:syntastic_cpp_include_dirs = ['/apps/lab/miket/seqan-trunk/core/include/']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
+let g:syntastic_always_populate_loc_list = 1
 
 " Solarized light
 let g:solarized_termtrans=1
@@ -147,6 +160,13 @@ if !exists("*GetName")
     function GetName()
         return 'Matthew Stone'
     endfunction
+endif
+
+" Null string if not a python file
+if !exists("*TagInStatusLine")
+  function TagInStatusLine()
+    return ''
+  endfunction
 endif
 
 " Airline prefs
