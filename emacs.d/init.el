@@ -4,8 +4,8 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; Map cmd to meta
-(setq mac-command-modifier 'meta)
-(setq mac-option-modifier nil)
+;; (setq mac-command-modifier 'meta)
+(setq mac-option-modifier 'meta)
 
 ;; Initialize package manager
 (require 'package)
