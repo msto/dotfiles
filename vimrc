@@ -230,24 +230,6 @@ function! s:MaybeUpdateLightline()
   end
 endfunction
 
-" Airline prefs
-set laststatus=2
-" let g:airline_enable_syntastic=1
-" let g:airline#extensions#syntastic#enabled=1
-let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='solarized'
-" let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_left_alt_sep=''
-let g:airline_right_alt_sep=''
-let g:airline_section_c='%f' " : %{TagInStatusLine()}'
-"let g:airline_section_c=airline#section#create_left(['file', '%{TagInStatusLine()}'])
-"let g:airline_section_x=airline#section#create_right(['filetype'])
-let g:airline_section_x=''
-let g:airline_section_y='%p%%'
-let g:airline_section_z='%l:%c'
-
 " Latex-Box prefs
 let g:LatexBox_latexmk_options='-pvc -xelatex'
 let g:LatexBox_latexmk_async=1
