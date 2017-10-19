@@ -34,16 +34,17 @@ else
 endif
 
 " Restrict heavy plugins (i.e. autocomplete) to local machine
-if has('macunix')
-    Plugin 'davidhalter/jedi-vim'
-    Plugin 'ervandew/supertab'
-endif
+" if has('macunix')
+    " Plugin 'davidhalter/jedi-vim'
+    " Plugin 'ervandew/supertab'
+" endif
 
 Plugin 'altercation/vim-colors-solarized'       " Colorscheme
 Plugin 'scrooloose/nerdcommenter'               " Auto-commenting
 Plugin 'tpope/vim-fugitive'                     " Git integration
-Plugin 'bling/vim-airline'                      " Status bar
-Plugin 'vim-airline/vim-airline-themes'         " Status bar customization
+" Plugin 'bling/vim-airline'                      " Status bar
+" Plugin 'vim-airline/vim-airline-themes'         " Status bar customization
+Plugin 'itchyny/lightline.vim'                  " Status bar
 Plugin 'jpalardy/vim-slime'                     " SLIME
 Plugin 'aperezdc/vim-template'                  " Default templates by filetype
 Plugin 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
@@ -54,6 +55,7 @@ Plugin 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
 Plugin 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
 Plugin 'flazz/vim-colorschemes'                 " (?) More colorschemes
 Plugin 'Shougo/neocomplete.vim'                 " (?) Autocompletion
+Plugin 'junegunn/goyo.vim'                      " Distraction-free writing
 " Plugin 'ajh17/VimCompletesMe'
 " Plugin 'scrooloose/nerdtree'
 " Plugin 'mileszs/ack.vim'
@@ -136,6 +138,12 @@ let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_always_populate_loc_list = 1
 
+" ALE
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+
 " Solarized light
 let g:solarized_termtrans=1
 set background=light
@@ -169,19 +177,74 @@ if !exists("*TagInStatusLine")
   endfunction
 endif
 
+" Lightline
+set laststatus=2
+let g:lightline = {
+\ 'colorscheme': 'solarized',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['gitbranch'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_function': {
+\   'gitbranch': 'fugitive#head'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ▲', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
 " Airline prefs
 set laststatus=2
 " let g:airline_enable_syntastic=1
-let g:airline#extensions#syntastic#enabled=1
+" let g:airline#extensions#syntastic#enabled=1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='solarized'
 " let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_left_alt_sep='|'
-let g:airline_right_alt_sep='|'
-let g:airline_section_c='%f : %{TagInStatusLine()}'
-let g:airline_section_c=airline#section#create_left(['file', '%{TagInStatusLine()}'])
-let g:airline_section_x=airline#section#create_right(['filetype'])
+let g:airline_left_alt_sep=''
+let g:airline_right_alt_sep=''
+let g:airline_section_c='%f' " : %{TagInStatusLine()}'
+"let g:airline_section_c=airline#section#create_left(['file', '%{TagInStatusLine()}'])
+"let g:airline_section_x=airline#section#create_right(['filetype'])
+let g:airline_section_x=''
 let g:airline_section_y='%p%%'
 let g:airline_section_z='%l:%c'
 
@@ -192,3 +255,19 @@ let g:LatexBox_latexmk_preview_continuously=1
 let g:Tex_ViewRule_pdf = 'Skim'
 
 let g:macvim_skim_app_path='/Applications/Skim.app'
+
+" Prose mode
+let g:goyo_width=82
+function! ProseMode()
+  call goyo#execute(0, [])
+  set spell noci nosi noai nolist noshowmode noshowcmd
+  set complete+=s
+  set bg=light
+  " if !has('gui_running')
+    " let g:solarized_termcolors=256
+  " endif
+  colors solarized
+endfunction
+
+command! ProseMode call ProseMode()
+nmap \p :ProseMode<CR>
