@@ -17,7 +17,13 @@
 ;; Kill welcome message
 (setq inhibit-startup-screen t)
 
+;; Wrap text
+(global-visual-line-mode t)
+(setq-default fill-column 80)
+(require 'visual-fill-column)
+
 ;; Activate evil-mode by default
+(setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
 
@@ -72,7 +78,7 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Ruler at column 80
-(require 'fill-column-indicator)
+;; (require 'fill-column-indicator)
 
 ;; (custom-set-variables
 ;;  ;; custom-set-variables was added by Custom.
@@ -123,7 +129,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (better-defaults zenburn-theme spacemacs-theme solarized-theme org-evil linum-relative dracula-theme))))
+    (visual-fill-column better-defaults zenburn-theme spacemacs-theme solarized-theme org-evil linum-relative dracula-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
