@@ -42,14 +42,11 @@ endif
 Plugin 'altercation/vim-colors-solarized'       " Colorscheme
 Plugin 'scrooloose/nerdcommenter'               " Auto-commenting
 Plugin 'tpope/vim-fugitive'                     " Git integration
-" Plugin 'bling/vim-airline'                      " Status bar
-" Plugin 'vim-airline/vim-airline-themes'         " Status bar customization
 Plugin 'itchyny/lightline.vim'                  " Status bar
 Plugin 'jpalardy/vim-slime'                     " SLIME
 Plugin 'aperezdc/vim-template'                  " Default templates by filetype
 Plugin 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
 Plugin 'tpope/vim-eunuch'                       " Unix commands
-Plugin 'mgedmin/pythonhelper.vim'               " Show parent block in status
 Plugin 'tpope/vim-obsession'                    " Backups
 Plugin 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
 Plugin 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
