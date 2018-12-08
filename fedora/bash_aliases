@@ -1,0 +1,28 @@
+# .bash_aliases
+source ~/dotfiles/bash_aliases
+
+# ssh shortcuts
+alias roy='ssh mstone@roy-submit.discovery.wisc.edu'
+alias mi2='ssh mrstone3@mi2.biostat.wisc.edu'
+alias adhara='ssh mrstone3@adhara.biostat.wisc.edu'
+
+function vpn () {
+  cmd=$1
+
+  if [[ "${cmd}" == "connect" ]]; then
+    globalprotect connect --portal uwmadison.vpn.wisc.edu
+  elif [[ "${cmd}" == "disconnect" ]]; then
+    globalprotect disconnect
+  else
+    echo "Unsupported command ${cmd}"
+    exit 1
+  fi
+}
+
+# Shortcut for ls
+alias l='ls -lh --group-directories-first'
+alias nohead='sed -e "/^#/d"'
+alias nb='jupyter notebook'
+alias open='xdg-open'
+alias xclip='xclip -selection c'
+
