@@ -13,6 +13,8 @@ function vpn () {
     globalprotect connect --portal uwmadison.vpn.wisc.edu
   elif [[ "${cmd}" == "disconnect" ]]; then
     globalprotect disconnect
+  elif [[ "${cmd}" == "status" ]]; then
+    globalprotect show --status
   else
     echo "Unsupported command ${cmd}"
     exit 1
