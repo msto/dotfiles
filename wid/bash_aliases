@@ -1,0 +1,57 @@
+
+if [ -f ~/dotfiles/bash_aliases ]; then
+    . ~/dotfiles/bash_aliases
+fi
+
+export SCRATCH_TMP=/scratch/miket/my520/tmp
+
+# Shortcut for ls
+# alias ls='ls -F'
+alias ls='ls --color=auto -F'
+alias l='ls -lh --group-directories-first'
+
+# Never wrap lines in less
+export LESS='-S'
+
+alias noheader="sed '/^#/d'"
+
+# Specify lsf parameters when invoking an interactive job
+# TODO: include condor parameters
+function interact() {
+  # defaults
+  min_cpu=1
+  min_ram="8G"
+  min_swap="8G"
+
+  while getopts ":n:M:v:" opt; do
+    case "${opt}" in
+      n)
+        min_cpu=${OPTARG}
+        ;;
+      M)
+        min_ram=${OPTARG}
+        ;;
+      v)
+        min_swap=${OPTARG}
+        ;;
+      *)
+        echo "Unsupported option ${opt}"
+        exit 1
+        ;;
+    esac
+  done
+
+  condor_submit -interactive \
+    -a "request_cpus=${min_cpu}" \
+    -a "request_memory=${min_ram}" \
+    -a "request_disk=${min_swap}"
+  # bsub -Is -q interact -sla miket_sc $@ /bin/bash
+}
+
+function bak() {
+    f=$1
+    cp $f ${f}.bak
+}
+
+# Open matlab shell on remote host
+alias matshell='matlab -nojvm -nodisplay -nosplash'
