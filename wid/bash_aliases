@@ -112,8 +112,8 @@ function cjobs() {
     | join -11 -24 <(cjob_status_order) - \
     | sort -k2,2 \
     | awk -v OFS="\t" '{
-        cmd="";
-        for (i=10; i<=NF; i++) {
+        cmd=$10;
+        for (i=11; i<=NF; i++) {
           cmd=cmd" "$i;
         }
         print $3, $4, $5, $1, $6, $7, $8, $9, cmd;
