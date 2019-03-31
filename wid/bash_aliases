@@ -68,6 +68,7 @@ alias matshell='matlab -nodisplay -nosplash'
 
 function cjob_hosts() {
   condor_q -run -sub $USER \
+    | sed -e 's/^ \+//' \
     | awk -v OFS="\t" -v user=$USER '($2==user) {
         split($6, hostaddr, "@"); 
         split(hostaddr[2], hostname, "."); 
@@ -78,6 +79,7 @@ function cjob_hosts() {
 
 function cjob_status() {
   condor_q -sub $USER \
+    | sed -e 's/^ \+//' \
     | awk -v OFS="\t" -v user=$USER '($2==user) {
         split($3, date, "/");
         month=sprintf("%02d", date[1]);
@@ -90,6 +92,7 @@ function cjob_status() {
 
 function cjob_cmd() {
   condor_q -sub $USER -wide \
+    | sed -e 's/^ \+//' \
     | awk -v user=$USER '($2==user)' \
     | sed -e 's/ \+/ /g' \
     | cut -d" " -f 1,9- \
