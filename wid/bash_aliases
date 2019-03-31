@@ -53,5 +53,71 @@ function bak() {
     cp $f ${f}.bak
 }
 
+function nb() {
+  port=$1
+
+  if [[ -z "${port}" ]]; then
+    port=8892
+  fi
+
+  jupyter notebook --no-browser --port=$port
+}
+
 # Open matlab shell on remote host
-alias matshell='matlab -nojvm -nodisplay -nosplash'
+alias matshell='matlab -nodisplay -nosplash'
+
+function cjob_hosts() {
+  condor_q -run -sub $USER \
+    | awk -v OFS="\t" -v user=$USER '($2==user) {
+        split($6, hostaddr, "@"); 
+        split(hostaddr[2], hostname, "."); 
+        print $1, hostname[1];
+      }' \
+    | sort -k1,1
+}
+
+function cjob_status() {
+  condor_q -sub $USER \
+    | awk -v OFS="\t" -v user=$USER '($2==user) {
+        split($3, date, "/");
+        month=sprintf("%02d", date[1]);
+        day=sprintf("%02d", date[2]);
+        timestamp=month"-"day"T"$4;
+        print $1, $2, $6, $7, timestamp, $5, $8;
+      }' \
+    | sort -k1,1
+}
+
+function cjob_cmd() {
+  condor_q -sub $USER -wide \
+    | awk -v user=$USER '($2==user)' \
+    | sed -e 's/ \+/ /g' \
+    | cut -d" " -f 1,9- \
+    | sed -e 's/ /\t/' \
+    | sort -k1,1
+}
+
+function cjob_status_order () {
+  echo "> R H S < I" \
+    | sed -e 's/ /\n/g' \
+    | awk -v OFS="\t" '{print $1, NR}' \
+    | sort -k1,1
+}
+
+function cjobs() {
+  join -a1 -j1 -t $'\t' <(cjob_status) <(cjob_hosts) \
+    | awk -v OFS="\t" '(!$8) {$8=".";} {print $1, $2, $8, $3, $4, $5, $6, $7}' \
+    | join -j1 -t $'\t' - <(cjob_cmd) \
+    | sort -k4,4 \
+    | join -11 -24 <(cjob_status_order) - \
+    | sort -k2,2 \
+    | awk -v OFS="\t" '{
+        cmd="";
+        for (i=10; i<=NF; i++) {
+          cmd=cmd" "$i;
+        }
+        print $3, $4, $5, $1, $6, $7, $8, $9, cmd;
+      }' \
+    | cat <(echo "ID OWNER HOST(S) ST PRI SUBMITTED RUN_TIME SIZE CMD" | sed -e 's/ /\t/g') - \
+    | column -t -s $'\t'
+}
