@@ -113,7 +113,7 @@ function cjobs() {
     | join -j1 -t $'\t' - <(cjob_cmd) \
     | sort -k4,4 \
     | join -11 -24 <(cjob_status_order) - \
-    | sort -k2,2 -k7,7 \
+    | sort -k2,2 -k6,6nr -k7,7 \
     | awk -v OFS="\t" '{
         cmd=$10;
         for (i=11; i<=NF; i++) {
