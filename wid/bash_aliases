@@ -124,3 +124,51 @@ function cjobs() {
     | cat <(echo "ID OWNER HOST(S) ST PRI SUBMITTED RUN_TIME SIZE CMD" | sed -e 's/ /\t/g') - \
     | column -t -s $'\t'
 }
+
+function chist() {
+  condor_history $USER -af:t ClusterID ProcID Owner LastRemoteHost \
+                             JobStatus ExitCode QDate CompletionDate \
+                             RemoteWallClockTime MemoryUsage \
+                             Cmd Args \
+    | awk -v FS="\t" -v OFS="\t" '{
+        JobID=$1"."$2;
+        if ($4=="undefined") {
+          hostname=".";
+        } else {
+          split($4, slotaddr, "@");
+          split(slotaddr[2], host, ".");
+          hostname=host[1];
+        }
+        if ($5==4 && $6==0) {
+          status="DONE";
+        } else if ($5==4 && $6!=0) {
+          status="EXIT";
+        } else if ($5==3) {
+          status="REMOVED";
+        } else {
+          status="UNK";
+        }
+        if ($6 == "undefined") {
+          $6 = ".";
+        }
+        Submitted=strftime("%m-%dT%H:%M", $7);
+        if ($8 == 0) {
+          Completed = ".";
+        } else {
+          Completed=strftime("%m-%dT%H:%M", $8);
+        }
+        d=int($9/86400);
+        h=int(($9 % 86400) / 3600);
+        m=int(($9 % 3600)/60);
+        s=int($9 % 60);
+        runtime=sprintf("%d+%02d:%02d:%02d", d, h, m, s);
+        if ($10 == "undefined") {
+          $10 = ".";
+        }
+        gsub(".*/", "", $11);
+        cmd=sprintf("%s %s", $11, $12);
+        print JobID, $3, hostname, status, $6, Submitted, Completed, runtime, $10, cmd;
+      }' \
+    | cat <(echo "ID OWNER HOST(S) STATUS CODE SUBMITTED COMPLETED RUN_TIME SIZE CMD" | sed -e 's/ /\t/g') - \
+    | column -t -s $'\t'
+}
