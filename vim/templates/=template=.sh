@@ -25,7 +25,7 @@ while getopts ":h" opt; do
       exit 0
       ;;
     *)
-      echo "Invalid option" 1>&2
+      echo -e "error: Invalid option \"-${OPTARG}\"\n" 1>&2
       usage
       exit 1
       ;;
