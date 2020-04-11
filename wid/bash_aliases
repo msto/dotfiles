@@ -53,5 +53,122 @@ function bak() {
     cp $f ${f}.bak
 }
 
+function nb() {
+  port=$1
+
+  if [[ -z "${port}" ]]; then
+    port=8892
+  fi
+
+  jupyter notebook --no-browser --port=$port
+}
+
 # Open matlab shell on remote host
-alias matshell='matlab -nojvm -nodisplay -nosplash'
+alias matshell='matlab -nodisplay -nosplash'
+
+function cjob_hosts() {
+  condor_q -run -sub $USER \
+    | sed -e 's/^ \+//' \
+    | awk -v OFS="\t" -v user=$USER '($2==user) {
+        split($6, hostaddr, "@"); 
+        split(hostaddr[2], hostname, "."); 
+        print $1, hostname[1];
+      }' \
+    | sort -k1,1
+}
+
+function cjob_status() {
+  condor_q -sub $USER \
+    | sed -e 's/^ \+//' \
+    | awk -v OFS="\t" -v user=$USER '($2==user) {
+        split($3, date, "/");
+        month=sprintf("%02d", date[1]);
+        day=sprintf("%02d", date[2]);
+        timestamp=month"-"day"T"$4;
+        print $1, $2, $6, $7, timestamp, $5, $8;
+      }' \
+    | sort -k1,1
+}
+
+function cjob_cmd() {
+  condor_q -sub $USER -wide \
+    | sed -e 's/^ \+//' \
+    | awk -v user=$USER '($2==user)' \
+    | sed -e 's/ \+/ /g' \
+    | cut -d" " -f 1,9- \
+    | sed -e 's/ /\t/' \
+    | sort -k1,1
+}
+
+function cjob_status_order () {
+  echo "> R H S < I" \
+    | sed -e 's/ /\n/g' \
+    | awk -v OFS="\t" '{print $1, NR}' \
+    | sort -k1,1
+}
+
+function cjobs() {
+  join -a1 -j1 -t $'\t' <(cjob_status) <(cjob_hosts) \
+    | awk -v OFS="\t" '(!$8) {$8=".";} {print $1, $2, $8, $3, $4, $5, $6, $7}' \
+    | join -j1 -t $'\t' - <(cjob_cmd) \
+    | sort -k4,4 \
+    | join -11 -24 <(cjob_status_order) - \
+    | sort -k2,2 -k6,6nr -k7,7 \
+    | awk -v OFS="\t" '{
+        cmd=$10;
+        for (i=11; i<=NF; i++) {
+          cmd=cmd" "$i;
+        }
+        print $3, $4, $5, $1, $6, $7, $8, $9, cmd;
+      }' \
+    | cat <(echo "ID OWNER HOST(S) ST PRI SUBMITTED RUN_TIME SIZE CMD" | sed -e 's/ /\t/g') - \
+    | column -t -s $'\t'
+}
+
+function chist() {
+  condor_history $USER -af:t ClusterID ProcID Owner LastRemoteHost \
+                             JobStatus ExitCode QDate CompletionDate \
+                             RemoteWallClockTime MemoryUsage \
+                             Cmd Args \
+    | awk -v FS="\t" -v OFS="\t" '{
+        JobID=$1"."$2;
+        if ($4=="undefined") {
+          hostname=".";
+        } else {
+          split($4, slotaddr, "@");
+          split(slotaddr[2], host, ".");
+          hostname=host[1];
+        }
+        if ($5==4 && $6==0) {
+          status="DONE";
+        } else if ($5==4 && $6!=0) {
+          status="EXIT";
+        } else if ($5==3) {
+          status="REMOVED";
+        } else {
+          status="UNK";
+        }
+        if ($6 == "undefined") {
+          $6 = ".";
+        }
+        Submitted=strftime("%m-%dT%H:%M", $7);
+        if ($8 == 0) {
+          Completed = ".";
+        } else {
+          Completed=strftime("%m-%dT%H:%M", $8);
+        }
+        d=int($9/86400);
+        h=int(($9 % 86400) / 3600);
+        m=int(($9 % 3600)/60);
+        s=int($9 % 60);
+        runtime=sprintf("%d+%02d:%02d:%02d", d, h, m, s);
+        if ($10 == "undefined") {
+          $10 = ".";
+        }
+        gsub(".*/", "", $11);
+        cmd=sprintf("%s %s", $11, $12);
+        print JobID, $3, hostname, status, $6, Submitted, Completed, runtime, $10, cmd;
+      }' \
+    | cat <(echo "ID OWNER HOST(S) STATUS CODE SUBMITTED COMPLETED RUN_TIME SIZE CMD" | sed -e 's/ /\t/g') - \
+    | column -t -s $'\t'
+}
