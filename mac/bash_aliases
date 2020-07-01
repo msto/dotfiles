@@ -1,38 +1,11 @@
 # .bash_aliases
 source ~/dotfiles/bash_aliases
 
-# Shortcut for ls
+# Shortcuts
 alias l='ls -lh --group-directories-first'
-
-# Automate cluster login
-function erisone() {
-    ping -c 1 erisone.partners.org &> /dev/null
-    if [ $? -eq 0 ]; then
-        ssh -tY my520@erisone.partners.org
-    else
-# TODO: Test tmux here
-        ssh -tY my520@ssh.research.partners.org "ssh -tY my520@erisone.partners.org"
-    fi
-}
-export -f erisone
-
-function eriscp() {
-    scp my520@erisone.partners.org:$@
-}
-
-alias idea='ssh my520@erisdcasmdw.partners.org'
-
-alias mount_erisone='sshfs -o reconnect my520@erisone.partners.org:/PHShome/my520/ /Users/msto/erisone/'
-alias mount_talkowski='sshfs -o reconnect my520@erisone.partners.org:/data/talkowski /Users/msto/talkowski/'
-alias mount_sfari='sshfs -o reconnect my520@erisone.partners.org:/data/talkowski/Samples/SFARI/ /Users/msto/sfari/'
-# alias mount_sfari='sshfs my520@erisone.partners.org:/data/talkowski/Samples/SFARI/ /Users/msto/sfari/'
-alias remount_sfari='diskutil unmount force /Users/msto/sfari; mount_sfari'
-
-alias tunnel='ssh my520@ssh.research.partners.org'
-alias anthill='ssh msto@anthill.cs.dartmouth.edu'
-
 alias nohead='sed -e "/^#/d"'
-
 alias nb='jupyter notebook'
+alias fvim='vim $(fzf --height 40% --reverse)'
+alias wiki='cd ~/vimwiki; vim $(fzf --height 40% --reverse); cd -'
 
-export LESS='-S'
+# Default options
