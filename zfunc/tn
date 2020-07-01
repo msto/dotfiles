@@ -1,0 +1,11 @@
+function tn () {
+    session=$1
+
+    if [[ "$session" == "-t" ]]; then
+        tmux new $@
+    elif [[ ! -z "$session" ]]; then
+        tmux new -s $session
+    else
+        tmux new
+    fi
+}
