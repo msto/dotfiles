@@ -53,6 +53,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
 Plugin 'flazz/vim-colorschemes'                 " (?) More colorschemes
 Plugin 'Shougo/neocomplete.vim'                 " (?) Autocompletion
 Plugin 'junegunn/goyo.vim'                      " Distraction-free writing
+Plugin 'vimwiki/vimwiki'
 " Plugin 'ajh17/VimCompletesMe'
 " Plugin 'scrooloose/nerdtree'
 " Plugin 'mileszs/ack.vim'
@@ -60,9 +61,9 @@ Plugin 'junegunn/goyo.vim'                      " Distraction-free writing
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-filetype plugin indent on    " required
+" filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
+filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
