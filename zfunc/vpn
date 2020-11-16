@@ -1,0 +1,20 @@
+function vpn () {
+    VPN=/opt/cisco/anyconnect/bin/vpn
+
+    if [[ "$#" -eq 0 ]]; then
+        $VPN -h
+        return 1
+    fi        
+
+    if [[ "$1" == "connect" ]]; then
+        ENDPOINT="webvpn.fhcrc.org"
+        USERNAME=mstone
+        PASSWORD=$(security find-generic-password -w -a $LOGNAME -s hutch-vpn)
+
+        printf "WEBVPN\n${USERNAME}\n${PASSWORD}\ny" |
+            $VPN -s connect "${ENDPOINT}" |
+            gsed -e "s/${PASSWORD}/********/"
+    else
+        $VPN $@
+    fi
+}
