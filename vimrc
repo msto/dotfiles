@@ -1,27 +1,20 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Plugins
 call plug#begin('~/.vim/plugged')
-
-" Asynchronous plugins require vim>=0.8
-if v:version < 800
-    Plug 'scrooloose/syntastic'               " Linter
-else
-    Plug 'w0rp/ale'                           " Linter
-endif
 
 Plug 'altercation/vim-colors-solarized'       " Colorscheme
 Plug 'aperezdc/vim-template'                  " Default templates by filetype
 Plug 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
+Plug 'dense-analysis/ale'                     " Linter
 Plug 'itchyny/lightline.vim'                  " Status bar
 Plug 'junegunn/fzf.vim'                       " fuzzy finding
 Plug 'jpalardy/vim-slime'                     " SLIME
-Plug 'scrooloose/nerdcommenter'               " Auto-commenting
-Plug 'vimwiki/vimwiki'
+Plug 'preservim/nerdcommenter'                " Auto-commenting
+Plug 'vimwiki/vimwiki'                        " wiki/org-lite
 
 call plug#end()
-
-" Put your non-Plugin stuff after this line
 
 syntax on
 set modeline
