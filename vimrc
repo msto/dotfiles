@@ -29,7 +29,6 @@ Plug 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
 Plug 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
 Plug 'flazz/vim-colorschemes'                 " (?) More colorschemes
 Plug 'Shougo/neocomplete.vim'                 " (?) Autocompletion
-Plug 'junegunn/goyo.vim'                      " Distraction-free writing
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -195,21 +194,4 @@ let g:LatexBox_latexmk_options='-pvc -xelatex'
 let g:LatexBox_latexmk_async=1
 let g:LatexBox_latexmk_preview_continuously=1
 let g:Tex_ViewRule_pdf = 'Skim'
-
 let g:macvim_skim_app_path='/Applications/Skim.app'
-
-" Prose mode
-let g:goyo_width=82
-function! ProseMode()
-  call goyo#execute(0, [])
-  set spell noci nosi noai nolist noshowmode noshowcmd
-  set complete+=s
-  set bg=light
-  " if !has('gui_running')
-    " let g:solarized_termcolors=256
-  " endif
-  colors solarized
-endfunction
-
-command! ProseMode call ProseMode()
-nmap \p :ProseMode<CR>
