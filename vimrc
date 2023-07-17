@@ -53,7 +53,7 @@ set expandtab
 set colorcolumn=81
 set backspace=indent,eol,start
 set number
-set relativenumber
+" set relativenumber
 set cursorline
 
 " Sane split navigation, and compatibility with vim-tmux-navigator
