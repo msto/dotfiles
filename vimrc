@@ -37,24 +37,24 @@ call plug#end()
 
 syntax on
 set modeline
-au FileType sh setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
-au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
-" Soft breaks
-au FileType tex,latex setlocal spell spelllang=en_us wrap linebreak nolist "textwidth=0 wrapmargin=0
-" Hard breaks
-" au FileType tex,latex setlocal spell spelllang=en_us textwidth=80
+
+let g:email='matthew.stone12@gmail.com'
 
 " Soft tabs of width 4
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
 set colorcolumn=81
 set backspace=indent,eol,start
 set number
-" set relativenumber
 set cursorline
+
+au FileType sh setlocal 
+    \ tabstop=2 
+    \ expandtab 
+    \ shiftwidth=2 
+    \ softtabstop=2
 
 " Sane split navigation, and compatibility with vim-tmux-navigator
 nnoremap <c-j> <c-w>j
@@ -62,7 +62,7 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
-" Allow vim as crontab editor
+" Set vim as crontab editor
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Don't copy line numbers
@@ -74,13 +74,8 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Snakemake syntax highlighting
 au BufNewFile,BufRead Snakefile set syntax=snakemake
-au BufNewFile,BufRead *.rules set syntax=snakemake
-au BufNewFile,BufRead *.snakefile set syntax=snakemake
-au BufNewFile,BufRead *.snake set syntax=snakemake
+au BufNewFile,BufRead *.smk     set syntax=snakemake
 
-au BufNewFile,BufRead *.tex set syntax=tex
-
-let g:email='matthew.stone12@gmail.com'
 
 " Enable jedi completion with supertab
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
