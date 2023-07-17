@@ -10,12 +10,6 @@ else
     Plug 'w0rp/ale'                           " Linter
 endif
 
-" Restrict heavy plugins (i.e. autocomplete) to local machine
-" if has('macunix')
-    " Plug 'davidhalter/jedi-vim'
-    " Plug 'ervandew/supertab'
-" endif
-
 Plug 'altercation/vim-colors-solarized'       " Colorscheme
 Plug 'scrooloose/nerdcommenter'               " Auto-commenting
 Plug 'tpope/vim-fugitive'                     " Git integration
@@ -26,7 +20,6 @@ Plug 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
 Plug 'tpope/vim-eunuch'                       " Unix commands
 Plug 'tpope/vim-obsession'                    " Backups
 Plug 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
-Plug 'LaTeX-Box-Team/LaTeX-Box'               " (?) LaTeX commands
 Plug 'flazz/vim-colorschemes'                 " (?) More colorschemes
 Plug 'Shougo/neocomplete.vim'                 " (?) Autocompletion
 Plug 'vimwiki/vimwiki'
@@ -65,20 +58,9 @@ nnoremap <c-l> <c-w>l
 " Set vim as crontab editor
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-" Don't copy line numbers
-" set mouse+=a
-
-" Move by line on screen
-" :map j gj
-" :map k gk
-
 " Snakemake syntax highlighting
 au BufNewFile,BufRead Snakefile set syntax=snakemake
 au BufNewFile,BufRead *.smk     set syntax=snakemake
-
-
-" Enable jedi completion with supertab
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 " Slime
 let g:slime_target = "tmux"
@@ -120,7 +102,7 @@ let g:templates_user_variables=[['NAME', 'GetName']]
 " vim-template variable expansion functions
 if !exists("*GetName")
     function GetName()
-        return 'Matthew Stone'
+        return 'Matt Stone'
     endfunction
 endif
 
@@ -183,10 +165,3 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
-
-" Latex-Box prefs
-let g:LatexBox_latexmk_options='-pvc -xelatex'
-let g:LatexBox_latexmk_async=1
-let g:LatexBox_latexmk_preview_continuously=1
-let g:Tex_ViewRule_pdf = 'Skim'
-let g:macvim_skim_app_path='/Applications/Skim.app'
