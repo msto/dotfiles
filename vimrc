@@ -11,17 +11,12 @@ else
 endif
 
 Plug 'altercation/vim-colors-solarized'       " Colorscheme
-Plug 'scrooloose/nerdcommenter'               " Auto-commenting
-Plug 'tpope/vim-fugitive'                     " Git integration
-Plug 'itchyny/lightline.vim'                  " Status bar
-Plug 'jpalardy/vim-slime'                     " SLIME
 Plug 'aperezdc/vim-template'                  " Default templates by filetype
 Plug 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
-Plug 'tpope/vim-eunuch'                       " Unix commands
-Plug 'tpope/vim-obsession'                    " Backups
-Plug 'ctrlpvim/ctrlp.vim'                     " (?) Fuzzy finder
-Plug 'flazz/vim-colorschemes'                 " (?) More colorschemes
-Plug 'Shougo/neocomplete.vim'                 " (?) Autocompletion
+Plug 'itchyny/lightline.vim'                  " Status bar
+Plug 'junegunn/fzf.vim'                       " fuzzy finding
+Plug 'jpalardy/vim-slime'                     " SLIME
+Plug 'scrooloose/nerdcommenter'               " Auto-commenting
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -43,7 +38,7 @@ set backspace=indent,eol,start
 set number
 set cursorline
 
-au FileType sh setlocal 
+au FileType sh,c,cpp,r setlocal
     \ tabstop=2 
     \ expandtab 
     \ shiftwidth=2 
