@@ -7,12 +7,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'       " Colorscheme
 Plug 'aperezdc/vim-template'                  " Default templates by filetype
 Plug 'christoomey/vim-tmux-navigator'         " Tmux navigation hotkeys
-Plug 'dense-analysis/ale'                     " Linter
+" Plug 'dense-analysis/ale'                     " Linter
 Plug 'itchyny/lightline.vim'                  " Status bar
 Plug 'junegunn/fzf.vim'                       " fuzzy finding
 Plug 'jpalardy/vim-slime'                     " SLIME
 Plug 'preservim/nerdcommenter'                " Auto-commenting
 Plug 'vimwiki/vimwiki'                        " wiki/org-lite
+Plug 'snakemake/snakemake', {'rtp': 'misc/vim'}  " Snakemake syntax highlighting
 
 call plug#end()
 
@@ -69,14 +70,14 @@ highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 
 " Solarized light
-let g:solarized_termtrans=1
-set background=light
-colorscheme solarized
+" let g:solarized_termtrans=1
+" set background=light
+" colorscheme solarized
 
 " Solarized dark
-" let g:solarized_termtrans=0
-" set background=dark
-" colorscheme solarized
+let g:solarized_termtrans=0
+set background=dark
+colorscheme solarized
 
 " NERDCommenter prefs
 let NERDSpaceDelims=1
