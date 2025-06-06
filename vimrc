@@ -27,7 +27,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set colorcolumn=81
+set colorcolumn=101
+set textwidth=100
+set formatoptions-=t
 set backspace=indent,eol,start
 set number
 set cursorline
